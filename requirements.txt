@@ -1,0 +1,16 @@
+pandas
+numpy
+scipy
+statsmodels
+scikit-learn
+lightgbm
+xgboost
+shap
+joblib
+fastapi
+uvicorn[standard]
+pydantic
+streamlit
+plotly
+matplotlib
+pyarrow
