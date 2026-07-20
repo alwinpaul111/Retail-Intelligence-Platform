@@ -1,6 +1,6 @@
 # Retail Intelligence & Demand Forecasting Platform
 
- **Live dashboard:** [retail-intelligence-platform-c7otajkennyrv5d5jfow8y.streamlit.app](https://retail-intelligence-platform-c7otajkennyrv5d5jfow8y.streamlit.app/)
+ **Live dashboard:-** [retail-intelligence-platform-c7otajkennyrv5d5jfow8y.streamlit.app](https://retail-intelligence-platform-c7otajkennyrv5d5jfow8y.streamlit.app/)
 
 An end-to-end analytics platform for a simulated nationwide retail chain (8 stores,
 4 Indian cities, 40 SKUs across 5 categories, 2 years of daily transactions).
