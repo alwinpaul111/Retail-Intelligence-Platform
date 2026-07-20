@@ -1,4 +1,4 @@
-# Retail Intelligence & Demand Forecasting Platform
+#  Retail Intelligence & Demand Forecasting Platform
 
 An end-to-end analytics platform for a simulated nationwide retail chain (8 stores,
 4 Indian cities, 40 SKUs across 5 categories, 2 years of daily transactions).
