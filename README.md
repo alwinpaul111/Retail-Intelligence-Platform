@@ -1,4 +1,6 @@
-#  Retail Intelligence & Demand Forecasting Platform
+# Retail Intelligence & Demand Forecasting Platform
+
+🔗 **Live dashboard:** [retail-intelligence-platform-c7otajkennyrv5d5jfow8y.streamlit.app](https://retail-intelligence-platform-c7otajkennyrv5d5jfow8y.streamlit.app/)
 
 An end-to-end analytics platform for a simulated nationwide retail chain (8 stores,
 4 Indian cities, 40 SKUs across 5 categories, 2 years of daily transactions).
@@ -118,8 +120,8 @@ benchmarked against a naive "same as last week" baseline:
 
 | Model | MAE | RMSE | MAPE |
 |---|---|---|---|
-| LightGBM | 16,599 | 43,160 | 22.9% |
-| XGBoost | 16,228 | 43,696 | 21.6% |
+| LightGBM | 16,629 | 43,186 | 23.2% |
+| XGBoost | 16,198 | 43,091 | 21.3% |
 | Naive (lag-7) | 26,792 | 76,954 | 26.1% |
 
 Both models beat the naive baseline by ~35-40% on MAE. SHAP confirms
@@ -145,6 +147,8 @@ hand-typed — swap in your real margin assumptions and it re-derives the number
 
 ## 7. Dashboard
 
+**Live at:** https://retail-intelligence-platform-c7otajkennyrv5d5jfow8y.streamlit.app/
+
 Streamlit app with 6 tabs: KPIs, Forecast (model comparison + SHAP + trend
 explorer), Store Performance, Product Performance, Customer Segments (RFM),
 and EDA — all filterable by date range, city, and category.
@@ -155,9 +159,60 @@ and EDA — all filterable by date range, city, and category.
   `/insights/latest`, `/model/comparison`, `/health`
 - **Docker**: separate images for API and dashboard, orchestrated via
   `docker-compose.yml`
-- **Cloud**: designed to deploy as-is to Render or an AWS ECS/Fargate task —
-  point `DATABASE_URL` at a managed Postgres instance and swap SQLite for
-  Postgres in `load_db.py` (schema is already Postgres-portable)
+- **Streamlit Community Cloud**: dashboard deployed directly from this repo
+  (`dashboard/app.py`), auto-redeploys on every push to `main`
+- **Cloud (API)**: designed to deploy as-is to Render or an AWS ECS/Fargate
+  task using `Dockerfile.api` — point `DATABASE_URL` at a managed Postgres
+  instance and swap SQLite for Postgres in `load_db.py` (schema is already
+  Postgres-portable)
+
+## Troubleshooting
+
+### macOS: `OSError: ... Library not loaded: @rpath/libomp.dylib` when running `train_model.py`
+
+LightGBM depends on OpenMP (`libomp`), which isn't bundled with the pip wheel on macOS —
+it has to come from Homebrew. This error means either libomp isn't installed, or (on
+Apple Silicon Macs with an older Homebrew setup) there's an **architecture mismatch**
+between your Python and your Homebrew installation.
+
+**Step 1 — check your setup:**
+```bash
+uname -m                                    # should print arm64 on Apple Silicon
+python3 -c "import platform; print(platform.machine())"   # should also print arm64
+which brew
+file $(which brew)
+```
+
+If `brew` lives at `/usr/local/bin/brew` instead of `/opt/homebrew/bin/brew`, you're
+running an Intel/Rosetta Homebrew on an Apple Silicon Mac — that's the root cause.
+
+**Step 2 — install a native ARM Homebrew:**
+```bash
+arch -arm64 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+eval "$(/opt/homebrew/bin/brew shellenv)"
+```
+
+**Step 3 — install libomp via the native brew:**
+```bash
+/opt/homebrew/bin/brew install libomp
+```
+
+**Step 4 — retry:**
+```bash
+python src/train_model.py
+```
+
+If `uname -m` and the Python check both already say `arm64` and `brew` is already at
+`/opt/homebrew/bin/brew`, you likely just need:
+```bash
+brew install libomp
+```
+with no architecture juggling required — the mismatch scenario above is specific to
+machines where Homebrew was originally installed before switching to (or under
+emulation on) Apple Silicon.
+
+Note: this issue is macOS-specific and doesn't affect the deployed Streamlit Cloud
+app, which runs on Linux.
 
 ## Honest scope notes
 
