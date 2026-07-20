@@ -61,7 +61,7 @@ else:
     f = txn.loc[txn["city"].isin(cities) & txn["category"].isin(categories)]
 
 tab_kpi, tab_forecast, tab_store, tab_product, tab_customer, tab_eda = st.tabs(
-    ["📊 KPIs", "🔮 Forecast", "🏬 Store Performance", "📦 Product Performance", "👥 Customer Segments", "🔍 EDA"]
+    [" KPIs", " Forecast", " Store Performance", " Product Performance", " Customer Segments", " EDA"]
 )
 
 # ---------------- KPI TAB ----------------
