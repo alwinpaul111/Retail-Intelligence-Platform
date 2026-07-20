@@ -4,10 +4,6 @@ FastAPI service exposing the trained revenue forecasting model.
 Run locally:
     uvicorn api.main:app --reload --port 8000
 
-Endpoints:
-    GET  /health
-    POST /predict          -> single forecast
-    GET  /insights/latest   -> cached business insight text
 """
 import json
 from pathlib import Path
