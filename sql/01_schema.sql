@@ -1,13 +1,5 @@
 -- ============================================================
 -- Retail Intelligence Platform - Schema
--- Engine: SQLite (dev) — DDL written to be Postgres-portable.
--- Notes on partitioning: in Postgres this transactions table would be
--- RANGE PARTITIONED BY (date) monthly, e.g.:
---   CREATE TABLE transactions (...) PARTITION BY RANGE (date);
---   CREATE TABLE transactions_2024_01 PARTITION OF transactions
---       FOR VALUES FROM ('2024-01-01') TO ('2024-02-01');
--- SQLite has no native partitioning, so we simulate the *benefit*
--- (partition pruning) with a covering index on (date, store_id) instead.
 -- ============================================================
 
 DROP TABLE IF EXISTS transactions;
