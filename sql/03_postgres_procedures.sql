@@ -1,9 +1,5 @@
 -- ============================================================
 -- POSTGRES-ONLY: Stored Procedures & Partitioning
--- Run this against Postgres (e.g. Supabase/Neon/RDS free tier) after
--- loading the same schema there. SQLite (used for local dev in this
--- repo) does not support PL/pgSQL procedures or native partitioning,
--- so this file demonstrates the "production" version of that layer.
 -- ============================================================
 
 -- ---- 1. Native range partitioning on the transactions table ----
