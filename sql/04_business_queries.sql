@@ -1,6 +1,5 @@
 -- ============================================================
--- BUSINESS QUERIES (the exact list from the spec)
--- All runnable directly against retail.db
+-- BUSINESS QUERIES 
 -- ============================================================
 
 -- 1. Top 10 products by revenue, in EVERY city
@@ -79,7 +78,7 @@ GROUP BY txn_month
 ORDER BY txn_month;
 
 -- ============================================================
--- BONUS: Stockout detection via CTE (sales history says nonzero,
+-- Stockout detection via CTE (sales history says nonzero,
 -- but inventory record shows 0 on hand) — feeds inventory prediction
 -- ============================================================
 WITH product_avg_demand AS (
