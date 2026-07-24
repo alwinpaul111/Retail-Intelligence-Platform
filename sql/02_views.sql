@@ -1,9 +1,5 @@
 -- ============================================================
 -- VIEWS
--- SQLite has no stored procedures, so reusable business logic is
--- expressed as views here. In sql/03_postgres_procedures.sql you'll
--- find the equivalent implemented as genuine PL/pgSQL stored
--- procedures/functions, ready to run against Postgres/RDS/Supabase.
 -- ============================================================
 
 DROP VIEW IF EXISTS vw_daily_store_revenue;
