@@ -7,12 +7,14 @@ from pathlib import Path
 
 import pandas as pd
 import numpy as np
+import requests
 import plotly.express as px
 import plotly.graph_objects as go
 import streamlit as st
 
 ROOT = Path(__file__).resolve().parent.parent
 DB = ROOT / "retail.db"
+API_URL = "https://retail-intelligence-platform-w2s3.onrender.com"
 
 st.set_page_config(page_title="Retail Intelligence Platform", layout="wide", page_icon="🛒")
 
@@ -61,7 +63,7 @@ else:
     f = txn.loc[txn["city"].isin(cities) & txn["category"].isin(categories)]
 
 tab_kpi, tab_forecast, tab_store, tab_product, tab_customer, tab_eda = st.tabs(
-    [" KPIs", " Forecast", " Store Performance", " Product Performance", " Customer Segments", " EDA"]
+    ["📊 KPIs", "🔮 Forecast", "🏬 Store Performance", "📦 Product Performance", "👥 Customer Segments", "🔍 EDA"]
 )
 
 # ---------------- KPI TAB ----------------
@@ -113,9 +115,73 @@ with tab_forecast:
             use_container_width=True,
         )
 
-    st.subheader("Store-Category Revenue Trend (proxy for forecast visualization)")
-    sel_store = st.selectbox("Store", sorted(stores["store_id"].unique()))
-    sel_cat = st.selectbox("Category", sorted(txn["category"].unique()))
+    st.divider()
+
+    # ---------------- Live API integration ----------------
+    st.subheader("🔴 Live Forecast (calls the deployed FastAPI service)")
+    st.caption(f"This section sends a real HTTP request to the live API at `{API_URL}` — not a local calculation.")
+
+    live_store = st.selectbox("Store", sorted(stores["store_id"].unique()), key="live_store")
+    live_cat = st.selectbox("Category", sorted(txn["category"].unique()), key="live_cat")
+
+    if st.button("Get Live Forecast from API"):
+        recent = txn[(txn["store_id"] == live_store) & (txn["category"] == live_cat)].sort_values("date")
+        daily_lc = recent.groupby("date")["revenue"].sum().reset_index().sort_values("date")
+        daily_units_lc = recent.groupby("date")["units_sold"].sum().reset_index().sort_values("date")
+
+        if len(daily_lc) < 28:
+            st.warning("Not enough history for this store/category to build a live request.")
+        else:
+            last_date = daily_lc["date"].max()
+            store_row = stores[stores["store_id"] == live_store].iloc[0]
+            payload = {
+                "store_id": int(live_store),
+                "city_tier": int(store_row["city_tier"]),
+                "dow": int(last_date.dayofweek),
+                "is_weekend": int(last_date.dayofweek >= 5),
+                "month": int(last_date.month),
+                "is_holiday": 0,
+                "is_festive_window": 0,
+                "doy_sin": float(np.sin(2 * np.pi * last_date.dayofyear / 365)),
+                "doy_cos": float(np.cos(2 * np.pi * last_date.dayofyear / 365)),
+                "temp_celsius": 28.0,
+                "rainfall_mm": 0.0,
+                "avg_discount_pct": 0.0,
+                "had_promo": 0,
+                "is_weather_sensitive_cat": int(live_cat == "Beverages"),
+                "hot_day_x_sensitive": 0,
+                "revenue_lag_1": float(daily_lc["revenue"].iloc[-1]),
+                "revenue_lag_7": float(daily_lc["revenue"].iloc[-7]),
+                "revenue_lag_14": float(daily_lc["revenue"].iloc[-14]),
+                "revenue_lag_28": float(daily_lc["revenue"].iloc[-28]),
+                "revenue_roll_mean_7": float(daily_lc["revenue"].tail(7).mean()),
+                "revenue_roll_std_7": float(daily_lc["revenue"].tail(7).std()),
+                "revenue_roll_mean_28": float(daily_lc["revenue"].tail(28).mean()),
+                "units_roll_mean_7": float(daily_units_lc["units_sold"].tail(7).mean()),
+            }
+
+            try:
+                with st.spinner("Calling live API on Render (may take ~30-60s if it's waking from sleep)..."):
+                    resp = requests.post(f"{API_URL}/predict", json=payload, timeout=90)
+                if resp.status_code == 200:
+                    result = resp.json()
+                    rc1, rc2, rc3 = st.columns(3)
+                    rc1.metric("Predicted Revenue", f"₹{result['predicted_revenue']:,.0f}")
+                    rc2.metric("Lower 90% bound", f"₹{result['lower_90']:,.0f}")
+                    rc3.metric("Upper 90% bound", f"₹{result['upper_90']:,.0f}")
+                    st.success(f"Response received from {API_URL}/predict")
+                    with st.expander("Raw request/response"):
+                        st.json({"request": payload, "response": result})
+                else:
+                    st.error(f"API returned status {resp.status_code}: {resp.text}")
+            except requests.exceptions.RequestException as e:
+                st.error(f"Could not reach the API: {e}")
+
+    st.divider()
+
+    st.subheader("Store-Category Revenue Trend (historical)")
+    sel_store = st.selectbox("Store", sorted(stores["store_id"].unique()), key="trend_store")
+    sel_cat = st.selectbox("Category", sorted(txn["category"].unique()), key="trend_cat")
     trend = txn[(txn["store_id"] == sel_store) & (txn["category"] == sel_cat)].groupby("date")["revenue"].sum().reset_index()
     trend["rolling_7"] = trend["revenue"].rolling(7).mean()
     trend["rolling_30"] = trend["revenue"].rolling(30).mean()
@@ -125,7 +191,6 @@ with tab_forecast:
     fig2.add_trace(go.Scatter(x=trend["date"], y=trend["rolling_30"], name="30-day avg"))
     fig2.update_layout(title=f"Store {sel_store} — {sel_cat}: Revenue with Rolling Averages", height=420)
     st.plotly_chart(fig2, use_container_width=True)
-    st.caption("Live single-point forecasts (with 90% prediction interval) are served via the FastAPI `/predict` endpoint — see README for a curl example.")
 
 # ---------------- STORE PERFORMANCE ----------------
 with tab_store:
