@@ -3,7 +3,6 @@ Feature engineering: builds a store x category x day modeling table
 with lag features, rolling stats, calendar/weather features, and
 customer RFM features aggregated to the store level.
 
-Output: data/model_table.parquet
 """
 import sqlite3
 import pandas as pd
