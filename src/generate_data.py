@@ -10,14 +10,6 @@ while preserving full technical depth):
   - 3,000 customers
   - 2 years of daily transactions (2024-01-01 -> 2025-12-31)
   - Weather, holidays, promotions, inventory snapshots
-
-Realism baked in:
-  - Weekly seasonality (weekend uplift)
-  - Yearly seasonality (festive season spike around Diwali/Christmas)
-  - Promotion-driven demand lift (with noise, so A/B testing is meaningful)
-  - Weather sensitivity for certain categories (e.g. Beverages up when hot)
-  - Store-level baseline differences (city tier, footfall)
-  - Missing values and outliers injected on purpose (for EDA section)
 """
 
 import numpy as np
