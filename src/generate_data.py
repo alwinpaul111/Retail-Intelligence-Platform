@@ -3,13 +3,6 @@ Retail Intelligence & Demand Forecasting Platform
 --------------------------------------------------
 Synthetic data generator.
 
-Scope (kept deliberately tight so the project is fast to run end-to-end
-while preserving full technical depth):
-  - 8 stores across 4 Indian cities
-  - 40 products across 5 categories
-  - 3,000 customers
-  - 2 years of daily transactions (2024-01-01 -> 2025-12-31)
-  - Weather, holidays, promotions, inventory snapshots
 """
 
 import numpy as np
