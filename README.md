@@ -3,8 +3,6 @@
 🔗 **Live dashboard:** [retail-intelligence-platform-c7otajkennyrv5d5jfow8y.streamlit.app](https://retail-intelligence-platform-c7otajkennyrv5d5jfow8y.streamlit.app/)
 🔗 **Live API docs:** [retail-intelligence-platform-w2s3.onrender.com/docs](https://retail-intelligence-platform-w2s3.onrender.com/docs)
 
-> Both run on free hosting tiers and spin down after ~15 minutes of inactivity —
-> the first request after a period of inactivity can take 30-60 seconds to wake up.
 
 An end-to-end analytics platform for a simulated nationwide retail chain (8 stores,
 4 Indian cities, 40 SKUs across 5 categories, 2 years of daily transactions).
