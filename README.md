@@ -1,6 +1,10 @@
 # Retail Intelligence & Demand Forecasting Platform
 
- **Live dashboard :-** [retail-intelligence-platform-c7otajkennyrv5d5jfow8y.streamlit.app](https://retail-intelligence-platform-c7otajkennyrv5d5jfow8y.streamlit.app/)
+🔗 **Live dashboard:** [retail-intelligence-platform-c7otajkennyrv5d5jfow8y.streamlit.app](https://retail-intelligence-platform-c7otajkennyrv5d5jfow8y.streamlit.app/)
+🔗 **Live API docs:** [retail-intelligence-platform-w2s3.onrender.com/docs](https://retail-intelligence-platform-w2s3.onrender.com/docs)
+
+> Both run on free hosting tiers and spin down after ~15 minutes of inactivity —
+> the first request after a period of inactivity can take 30-60 seconds to wake up.
 
 An end-to-end analytics platform for a simulated nationwide retail chain (8 stores,
 4 Indian cities, 40 SKUs across 5 categories, 2 years of daily transactions).
@@ -144,6 +148,8 @@ Auto-generated from the model + festive-window data, e.g.:
 This is computed programmatically in `train_model.py` (and reproducible as a
 genuine Postgres function in `estimate_inventory_uplift_profit()`), not
 hand-typed — swap in your real margin assumptions and it re-derives the number.
+It's also live at [`/insights/latest`](https://retail-intelligence-platform-w2s3.onrender.com/insights/latest)
+on the deployed API.
 
 ## 7. Dashboard
 
@@ -155,16 +161,15 @@ and EDA — all filterable by date range, city, and category.
 
 ## 8. Deployment
 
-- **FastAPI**: `/predict` (single forecast with 90% prediction interval),
-  `/insights/latest`, `/model/comparison`, `/health`
+- **FastAPI**: live at https://retail-intelligence-platform-w2s3.onrender.com/docs
+  — `/predict` (single forecast with 90% prediction interval), `/insights/latest`,
+  `/model/comparison`, `/health`. Deployed on Render from `Dockerfile.api`.
 - **Docker**: separate images for API and dashboard, orchestrated via
   `docker-compose.yml`
 - **Streamlit Community Cloud**: dashboard deployed directly from this repo
   (`dashboard/app.py`), auto-redeploys on every push to `main`
-- **Cloud (API)**: designed to deploy as-is to Render or an AWS ECS/Fargate
-  task using `Dockerfile.api` — point `DATABASE_URL` at a managed Postgres
-  instance and swap SQLite for Postgres in `load_db.py` (schema is already
-  Postgres-portable)
+- **Render**: API deployed from `Dockerfile.api`, also auto-redeploys on push
+  to `main`
 
 ## Troubleshooting
 
@@ -211,8 +216,15 @@ with no architecture juggling required — the mismatch scenario above is specif
 machines where Homebrew was originally installed before switching to (or under
 emulation on) Apple Silicon.
 
-Note: this issue is macOS-specific and doesn't affect the deployed Streamlit Cloud
-app, which runs on Linux.
+Note: this issue is macOS-specific and doesn't affect the deployed dashboard or
+API, both of which run on Linux (Streamlit Cloud and Render respectively).
+
+### Render: deploying `Dockerfile.api` but it's running as a plain Python app instead
+
+Render auto-detects the runtime from repo contents and can default to "Python 3"
+if it sees `requirements.txt`, ignoring `Dockerfile.api` entirely. When creating
+the service, explicitly set **Language** to **Docker** and **Dockerfile Path** to
+`Dockerfile.api` (build context: `.`) before deploying.
 
 ## Honest scope notes
 
