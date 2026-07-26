@@ -155,7 +155,7 @@ on the deployed API.
 
 ## 7. Dashboard
 
-**Live at:** https://retail-intelligence-platform-c7otajkennyrv5d5jfow8y.streamlit.app/
+**Live at:-** https://retail-intelligence-platform-c7otajkennyrv5d5jfow8y.streamlit.app/
 
 Streamlit app with 6 tabs: KPIs, Forecast (model comparison + SHAP + a live
 demo that calls the deployed FastAPI service in real time + trend explorer),
