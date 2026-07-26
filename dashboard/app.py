@@ -43,7 +43,7 @@ def load_data():
 txn, stores, rfm, model_comp, insight, shap_imp = load_data()
 
 # ---------------- Sidebar filters ----------------
-st.sidebar.title("🛒 Retail Intelligence")
+st.sidebar.title(" Retail Intelligence")
 st.sidebar.caption("Nationwide retail chain — analytics platform")
 
 date_range = st.sidebar.date_input(
