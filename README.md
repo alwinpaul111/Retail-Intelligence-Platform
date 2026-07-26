@@ -137,7 +137,7 @@ inventory planning where the uncertainty band matters as much as the mean.
 Note that this interval is computed once, globally across all store-category
 series — it isn't calibrated per-segment, so it can look wide for
 low-volume categories. That's a known limitation, not a bug: a stronger
-version would fit segment-specific quantiles instead of a single global one.
+version would fit segment-specific quantiles instead of a single global one. 
 
 ## 6. Business Insights
 
