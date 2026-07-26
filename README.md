@@ -1,12 +1,8 @@
 # Retail Intelligence & Demand Forecasting Platform
 
-🔗 **Live dashboard:** [retail-intelligence-platform-c7otajkennyrv5d5jfow8y.streamlit.app](https://retail-intelligence-platform-c7otajkennyrv5d5jfow8y.streamlit.app/)
-🔗 **Live API docs:** [retail-intelligence-platform-w2s3.onrender.com/docs](https://retail-intelligence-platform-w2s3.onrender.com/docs)
+**Live dashboard:** [retail-intelligence-platform-c7otajkennyrv5d5jfow8y.streamlit.app](https://retail-intelligence-platform-c7otajkennyrv5d5jfow8y.streamlit.app/)
 
-> Both run on free hosting tiers and spin down after ~15 minutes of inactivity —
-> the first request after a period of inactivity can take 30-60 seconds to wake up.
-> The dashboard's Forecast tab includes a live demo that calls the deployed API
-> in real time and shows the actual network response.
+ **Live API docs:** [retail-intelligence-platform-w2s3.onrender.com/docs](https://retail-intelligence-platform-w2s3.onrender.com/docs)
 
 An end-to-end analytics platform for a simulated nationwide retail chain (8 stores,
 4 Indian cities, 40 SKUs across 5 categories, 2 years of daily transactions).
