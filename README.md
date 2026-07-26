@@ -1,9 +1,12 @@
 # Retail Intelligence & Demand Forecasting Platform
 
-**Live dashboard:** [retail-intelligence-platform-c7otajkennyrv5d5jfow8y.streamlit.app](https://retail-intelligence-platform-c7otajkennyrv5d5jfow8y.streamlit.app/)
+🔗 **Live dashboard:** [retail-intelligence-platform-c7otajkennyrv5d5jfow8y.streamlit.app](https://retail-intelligence-platform-c7otajkennyrv5d5jfow8y.streamlit.app/)
+🔗 **Live API docs:** [retail-intelligence-platform-w2s3.onrender.com/docs](https://retail-intelligence-platform-w2s3.onrender.com/docs)
 
-**Live API docs:** [retail-intelligence-platform-w2s3.onrender.com/docs](https://retail-intelligence-platform-w2s3.onrender.com/docs)
-
+> Both run on free hosting tiers and spin down after ~15 minutes of inactivity —
+> the first request after a period of inactivity can take 30-60 seconds to wake up.
+> The dashboard's Forecast tab includes a live demo that calls the deployed API
+> in real time and shows the actual network response.
 
 An end-to-end analytics platform for a simulated nationwide retail chain (8 stores,
 4 Indian cities, 40 SKUs across 5 categories, 2 years of daily transactions).
@@ -39,7 +42,7 @@ retail-intelligence/
 │   ├── eda.py                 # seasonality, segmentation, outliers, heatmaps
 │   └── train_model.py         # LightGBM + XGBoost forecasting, SHAP, insight gen
 ├── api/main.py             # FastAPI inference service
-├── dashboard/app.py        # Streamlit interactive dashboard
+├── dashboard/app.py        # Streamlit interactive dashboard (calls the live API)
 ├── Dockerfile.api / Dockerfile.dashboard / docker-compose.yml
 └── requirements.txt
 ```
@@ -135,6 +138,10 @@ festive-window and day-of-week as the next-strongest signals.
 Prediction intervals (empirical residual quantiles) are served alongside
 point forecasts via the API, not just point estimates — important for
 inventory planning where the uncertainty band matters as much as the mean.
+Note that this interval is computed once, globally across all store-category
+series — it isn't calibrated per-segment, so it can look wide for
+low-volume categories. That's a known limitation, not a bug: a stronger
+version would fit segment-specific quantiles instead of a single global one.
 
 ## 6. Business Insights
 
@@ -154,9 +161,10 @@ on the deployed API.
 
 **Live at:** https://retail-intelligence-platform-c7otajkennyrv5d5jfow8y.streamlit.app/
 
-Streamlit app with 6 tabs: KPIs, Forecast (model comparison + SHAP + trend
-explorer), Store Performance, Product Performance, Customer Segments (RFM),
-and EDA — all filterable by date range, city, and category.
+Streamlit app with 6 tabs: KPIs, Forecast (model comparison + SHAP + a live
+demo that calls the deployed FastAPI service in real time + trend explorer),
+Store Performance, Product Performance, Customer Segments (RFM), and EDA —
+all filterable by date range, city, and category.
 
 ## 8. Deployment
 
@@ -166,7 +174,8 @@ and EDA — all filterable by date range, city, and category.
 - **Docker**: separate images for API and dashboard, orchestrated via
   `docker-compose.yml`
 - **Streamlit Community Cloud**: dashboard deployed directly from this repo
-  (`dashboard/app.py`), auto-redeploys on every push to `main`
+  (`dashboard/app.py`), auto-redeploys on every push to `main`, and makes real
+  HTTP calls to the live Render API for its "Live Forecast" demo
 - **Render**: API deployed from `Dockerfile.api`, also auto-redeploys on push
   to `main`
 
@@ -215,8 +224,29 @@ with no architecture juggling required — the mismatch scenario above is specif
 machines where Homebrew was originally installed before switching to (or under
 emulation on) Apple Silicon.
 
-Note: this issue is macOS-specific and doesn't affect the deployed dashboard or
-API, both of which run on Linux (Streamlit Cloud and Render respectively).
+### Render/Linux: `OSError: libgomp.so.1: cannot open shared object file` on the deployed API
+
+Same underlying cause as the macOS issue above (LightGBM needs an OpenMP runtime),
+but the Linux fix is different. The `python:3.11-slim` base image used in
+`Dockerfile.api` doesn't include `libgomp` by default, so it has to be installed
+via `apt-get` before `pip install -r requirements.txt` runs. `Dockerfile.api`
+already includes this fix:
+
+```dockerfile
+RUN apt-get update && apt-get install -y --no-install-recommends libgomp1 \
+    && rm -rf /var/lib/apt/lists/*
+```
+
+If you fork this repo and hit this error on your own Render deploy, make sure
+that line is present in your `Dockerfile.api` before the `pip install` step.
+
+If you push a fix and Render keeps showing the old error, check that the
+deploy actually picked up your latest commit — the **Source** field on the
+deploy page shows the commit hash it's running. If it's still showing an old
+hash after a push:
+1. Go to Settings → Build & Deploy and confirm **Auto-Deploy** is enabled and
+   pointed at the `main` branch
+2. Or trigger it manually: **Manual Deploy → Deploy latest commit**
 
 ### Render: deploying `Dockerfile.api` but it's running as a plain Python app instead
 
