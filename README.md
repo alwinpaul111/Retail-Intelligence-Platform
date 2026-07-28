@@ -5,7 +5,7 @@
  **Live API docs :-** [retail-intelligence-platform-w2s3.onrender.com/docs](https://retail-intelligence-platform-w2s3.onrender.com/docs)
 
 An end-to-end analytics platform for a simulated nationwide retail chain (8 stores,
-4 Indian cities, 40 SKUs across 5 categories, 2 years of daily transactions).
+4 Indian cities, 40 SKUs across 5 categories, 2 years of daily transactions)
 Built to demonstrate the full data science stack: **advanced SQL → statistics →
 EDA → feature engineering → ML modeling → business insights → interactive
 dashboard → containerized deployment.**
