@@ -1,4 +1,4 @@
-# Retail Intelligence & Demand Forecasting Platform
+# Retail Intelligence & Demand Forecasting Platform 
 
 **Live dashboard :-** [retail-intelligence-platform-c7otajkennyrv5d5jfow8y.streamlit.app](https://retail-intelligence-platform-c7otajkennyrv5d5jfow8y.streamlit.app/)
 
