@@ -12,7 +12,7 @@ dashboard → containerized deployment.**
 
 ## Why this project
 
-Most portfolio projects stop at "trained a model, got 85% accuracy" This one 
+Most portfolio projects stop at " trained a model, got 85% accuracy " This one 
 is scoped around a realistic business question retail chains actually pay for:
 *where should we stock more inventory, and what's it worth?* Every layer below
 feeds into that answer — the SQL views compute the KPIs, the stats module
