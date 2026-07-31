@@ -141,7 +141,7 @@ version would fit segment-specific quantiles instead of a single global one.
 
 ## 6. Business Insights
 
-Auto-generated from the model + festive-window data, e.g.:
+Auto-generated from the model + festive-window data, e.g.:-
 
 > Increasing inventory of 'Electronics' in Mumbai by 15% ahead of the festive
 > season is projected to add ₹576,637 in incremental profit over a 30-day
