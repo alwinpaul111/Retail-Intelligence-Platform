@@ -8,7 +8,7 @@ An end-to-end analytics platform for a simulated nationwide retail chain (8 stor
 4 Indian cities, 40 SKUs across 5 categories, 2 years of daily transactions)
 Built to demonstrate the full data science stack: **advanced SQL → statistics →
 EDA → feature engineering → ML modeling → business insights → interactive
-dashboard → containerized deployment**
+dashboard → containerized deployment.**
 
 ## Why this project
 
