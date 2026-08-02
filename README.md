@@ -72,7 +72,7 @@ docker compose up --build
   *within each city*, `LAG()` for month-over-month growth
 - **CTEs**:- multi-step cohort analysis (new vs. returning customer revenue),
   stockout detection joining inventory against historical demand
-- **Views**: `vw_customer_rfm`, `vw_rolling_30d_revenue`, `vw_monthly_growth`,
+- **Views**:- `vw_customer_rfm`, `vw_rolling_30d_revenue`, `vw_monthly_growth`,
   `vw_product_revenue_rank_by_city`, `vw_repeat_purchase_rate`
 - **Stored procedures**: SQLite has no PL/pgSQL, so `sql/03_postgres_procedures.sql`
   contains genuine Postgres stored procedures (`refresh_daily_store_kpis()`,
