@@ -83,7 +83,7 @@ docker compose up --build
 - **Partitioning**:- native `PARTITION BY RANGE (date)` quarterly partitioning
   specified for Postgres, since SQLite doesn't support it natively
 
-Run the exact requested query set directly:
+Run the exact requested query set directly:-
 ```bash
 sqlite3 retail.db < sql/04_business_queries.sql
 ```
