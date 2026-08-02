@@ -78,9 +78,9 @@ docker compose up --build
   contains genuine Postgres stored procedures (`refresh_daily_store_kpis()`,
   `get_customer_ltv()`, `estimate_inventory_uplift_profit()`) — runnable against
   any Postgres instance (Supabase/Neon/RDS free tier)
-- **Indexing**: composite indexes documented with rationale in `01_schema.sql`
+- **Indexing**:- composite indexes documented with rationale in `01_schema.sql`
   (e.g. `(date, store_id)` as a covering index for date-range queries)
-- **Partitioning**: native `PARTITION BY RANGE (date)` quarterly partitioning
+- **Partitioning**:- native `PARTITION BY RANGE (date)` quarterly partitioning
   specified for Postgres, since SQLite doesn't support it natively
 
 Run the exact requested query set directly:
