@@ -68,7 +68,7 @@ docker compose up --build
 
 ## 1. Advanced SQL
 
-- **Window functions**: rolling 7/30-day revenue, `RANK()` for top products
+- **Window functions**:- rolling 7/30-day revenue, `RANK()` for top products
   *within each city*, `LAG()` for month-over-month growth
 - **CTEs**: multi-step cohort analysis (new vs. returning customer revenue),
   stockout detection joining inventory against historical demand
