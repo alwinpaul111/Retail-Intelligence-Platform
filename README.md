@@ -90,7 +90,7 @@ sqlite3 retail.db < sql/04_business_queries.sql
 
 ## 2. Statistics
 
-`src/statistical_analysis.py` answers, with real output:
+`src/statistical_analysis.py` answers, with real output:-
 
 - **"Did discount campaign A significantly increase sales?"** — Welch's t-test,
   treatment (promo-active days) vs. control (same categories, no promo):
