@@ -167,7 +167,7 @@ all filterable by date range, city, and category
 - **FastAPI**:- live at https://retail-intelligence-platform-w2s3.onrender.com/docs
   — `/predict` (single forecast with 90% prediction interval), `/insights/latest`,
   `/model/comparison`, `/health`. Deployed on Render from `Dockerfile.api`.
-- **Docker**: separate images for API and dashboard, orchestrated via
+- **Docker**:- separate images for API and dashboard, orchestrated via
   `docker-compose.yml`
 - **Streamlit Community Cloud**: dashboard deployed directly from this repo
   (`dashboard/app.py`), auto-redeploys on every push to `main`, and makes real
