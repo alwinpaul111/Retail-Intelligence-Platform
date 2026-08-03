@@ -164,7 +164,7 @@ all filterable by date range, city, and category
 
 ## 8. Deployment
 
-- **FastAPI**: live at https://retail-intelligence-platform-w2s3.onrender.com/docs
+- **FastAPI**:- live at https://retail-intelligence-platform-w2s3.onrender.com/docs
   — `/predict` (single forecast with 90% prediction interval), `/insights/latest`,
   `/model/comparison`, `/health`. Deployed on Render from `Dockerfile.api`.
 - **Docker**: separate images for API and dashboard, orchestrated via
