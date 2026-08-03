@@ -172,7 +172,7 @@ all filterable by date range, city, and category
 - **Streamlit Community Cloud**:- dashboard deployed directly from this repo
   (`dashboard/app.py`), auto-redeploys on every push to `main`, and makes real
   HTTP calls to the live Render API for its "Live Forecast" demo
-- **Render**: API deployed from `Dockerfile.api`, also auto-redeploys on push
+- **Render**:- API deployed from `Dockerfile.api`, also auto-redeploys on push
   to `main`
 
 ## Troubleshooting
