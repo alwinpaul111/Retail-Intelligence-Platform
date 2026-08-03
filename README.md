@@ -169,7 +169,7 @@ all filterable by date range, city, and category
   `/model/comparison`, `/health`. Deployed on Render from `Dockerfile.api`.
 - **Docker**:- separate images for API and dashboard, orchestrated via
   `docker-compose.yml`
-- **Streamlit Community Cloud**: dashboard deployed directly from this repo
+- **Streamlit Community Cloud**:- dashboard deployed directly from this repo
   (`dashboard/app.py`), auto-redeploys on every push to `main`, and makes real
   HTTP calls to the live Render API for its "Live Forecast" demo
 - **Render**: API deployed from `Dockerfile.api`, also auto-redeploys on push
