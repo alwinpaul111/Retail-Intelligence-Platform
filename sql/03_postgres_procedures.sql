@@ -38,7 +38,7 @@ CREATE TABLE transactions_2025_q4 PARTITION OF transactions_p
 CREATE INDEX ON transactions_p (store_id, date);
 CREATE INDEX ON transactions_p (product_id, date);
 
--- ---- 2. Stored procedure: refresh a materialized rollup table ----
+-- ---- 2. Stored procedure:- refresh a materialized rollup table ----
 -- Mirrors what a nightly Airflow job would call to refresh the
 -- dashboard's pre-aggregated KPI table instead of hitting raw
 -- transactions at query time.
