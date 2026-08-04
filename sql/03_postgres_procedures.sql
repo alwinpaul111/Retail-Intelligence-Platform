@@ -62,7 +62,7 @@ BEGIN
 END;
 $$;
 
--- Example: pg_cron.schedule('nightly-kpi-refresh', '0 2 * * *', 'CALL refresh_daily_store_kpis()');
+
 
 -- ---- 3. Function: Customer Lifetime Value (parameterized, callable) ----
 CREATE OR REPLACE FUNCTION get_customer_ltv(p_customer_id INT)
