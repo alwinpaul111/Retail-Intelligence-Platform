@@ -17,7 +17,7 @@ CREATE TABLE transactions_p (
 
 -- One partition per quarter keeps partition count manageable while
 -- still letting the planner skip ~75% of the table for any single-quarter
--- query (e.g. dashboard's "last 90 days" view).
+
 CREATE TABLE transactions_2024_q1 PARTITION OF transactions_p
     FOR VALUES FROM ('2024-01-01') TO ('2024-04-01');
 CREATE TABLE transactions_2024_q2 PARTITION OF transactions_p
