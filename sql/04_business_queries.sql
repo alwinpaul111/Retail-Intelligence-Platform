@@ -53,7 +53,7 @@ WHERE store_id = 1
 ORDER BY year_month;
 
 -- ============================================================
--- BONUS: CTE-heavy example — cohort-style "new vs returning revenue"
+-- CTE-heavy example — cohort-style "new vs returning revenue"
 -- split per month, demonstrating multi-CTE composition
 -- ============================================================
 WITH first_purchase AS (
