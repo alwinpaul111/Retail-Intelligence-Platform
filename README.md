@@ -98,7 +98,7 @@ sqlite3 retail.db < sql/04_business_queries.sql
   mean difference
 - **ANOVA**: daily revenue differs significantly across cities (F=643, p≈0)
 - **Correlation**: revenue vs. discount, revenue vs. temperature (Pearson r + p-values)
-- **Confidence intervals**: repeat purchase rate, average transaction value
+- **Confidence intervals**: repeat purchase rate, average transaction value.
 
 ## 3. EDA
 
