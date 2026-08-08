@@ -151,7 +151,7 @@ This is computed programmatically in `train_model.py` (and reproducible as a
 genuine Postgres function in `estimate_inventory_uplift_profit()`), not
 hand-typed — swap in your real margin assumptions and it re-derives the number
 It's also live at [`/insights/latest`](https://retail-intelligence-platform-w2s3.onrender.com/insights/latest)
-on the deployed API.
+on the deployed API
 
 ## 7. Dashboard
 
