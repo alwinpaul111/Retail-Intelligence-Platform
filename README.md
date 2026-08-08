@@ -113,7 +113,7 @@ Store × category × day grain: lag features (1/7/14/28-day), rolling mean/std
 (7-day, 28-day), calendar features (day-of-week, holiday flags, cyclical
 day-of-year encoding), a 14-day pre-Diwali "festive window" flag, weather
 features with a category-specific interaction term (hot-day × weather-sensitive
-category), and customer RFM features.
+category), and customer RFM features
 
 ## 5. ML Models
 
