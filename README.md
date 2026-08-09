@@ -160,7 +160,7 @@ on the deployed API
 Streamlit app with 6 tabs: KPIs, Forecast (model comparison + SHAP + a live
 demo that calls the deployed FastAPI service in real time + trend explorer),
 Store Performance, Product Performance, Customer Segments (RFM), and EDA —
-all filterable by date range, city, and category
+all filterable by date range, city, and category.
 
 ## 8. Deployment
 
