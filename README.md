@@ -59,7 +59,7 @@ uvicorn api.main:app --reload --port 8000       # forecasting API
 streamlit run dashboard/app.py                   # dashboard
 ```
 
-Or with Docker:-
+Or with Docker :-
 ```bash
 docker compose up --build
 # API:       http://localhost:8000/docs
