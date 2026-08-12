@@ -206,7 +206,7 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 /opt/homebrew/bin/brew install libomp
 ```
 
-**Step 4 — retry:**
+**Step 4 — retry**
 ```bash
 python src/train_model.py
 ```
