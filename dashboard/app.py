@@ -1,6 +1,5 @@
 """
 Retail Intelligence & Demand Forecasting Platform 
-
 """
 import sqlite3
 from pathlib import Path
