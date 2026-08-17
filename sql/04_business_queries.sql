@@ -54,7 +54,7 @@ ORDER BY year_month;
 
 -- ============================================================
 -- CTE-heavy example — cohort-style "new vs returning revenue"
--- split per month, demonstrating multi-CTE composition.
+-- split per month, demonstrating multi-CTE composition
 -- ============================================================
 WITH first_purchase AS (
     SELECT customer_id, MIN(date) AS first_purchase_date
