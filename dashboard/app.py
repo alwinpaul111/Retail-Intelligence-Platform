@@ -1,6 +1,6 @@
 """
-Retail Intelligence & Demand Forecasting Platform — Dashboard
-Run: streamlit run dashboard/app.py
+Retail Intelligence & Demand Forecasting Platform 
+
 """
 import sqlite3
 from pathlib import Path
