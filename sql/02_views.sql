@@ -54,7 +54,7 @@ SELECT
     ) AS rolling_7d_avg_revenue
 FROM vw_daily_store_revenue;
 
--- Month-over-month growth per store (window function: LAG)
+-- Month-over-month growth per store 
 CREATE VIEW vw_monthly_growth AS
 WITH monthly AS (
     SELECT
