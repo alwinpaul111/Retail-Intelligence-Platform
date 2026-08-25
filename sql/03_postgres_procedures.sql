@@ -15,7 +15,7 @@ CREATE TABLE transactions_p (
     revenue               NUMERIC(12,2) NOT NULL
 ) PARTITION BY RANGE (date);
 
--- One partition per quarter keeps partition count manageable while
+-- One partition per quarter keeps partition count manageable while 
 -- still letting the planner skip ~75% of the table for any single-quarter
 
 CREATE TABLE transactions_2024_q1 PARTITION OF transactions_p
