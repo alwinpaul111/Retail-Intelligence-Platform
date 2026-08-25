@@ -87,7 +87,7 @@ CREATE TABLE inventory (
 
 -- ============================================================
 -- INDEXING STRATEGY
--- Rationale documented per index 
+-- Rationale documented per index  
 -- ============================================================
 
 -- Covering index: almost every analytical query filters/groups by date
