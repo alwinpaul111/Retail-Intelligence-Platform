@@ -93,7 +93,7 @@ CREATE TABLE inventory (
 -- Covering index: almost every analytical query filters/groups by date
 -- range first, then store. This index lets the planner prune massive
 -- chunks of the table before touching product/customer columns
--- (the "poor man's partition pruning" mentioned above).
+-- (the "poor man's partition pruning" mentioned above)
 CREATE INDEX idx_txn_date_store ON transactions(date, store_id);
 
 -- Supports product-level rollups (top-N products, category trends)
