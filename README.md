@@ -129,7 +129,7 @@ benchmarked against a naive "same as last week" baseline:-
 Both models beat the naive baseline by ~35-40% on MAE. SHAP confirms
 `revenue_roll_mean_28` and `revenue_roll_mean_7` dominate — sensible, since
 recent demand level is the strongest predictor of near-term demand, with
-festive-window and day-of-week as the next-strongest signals.
+festive-window and day-of-week as the next-strongest signals. 
 
 Prediction intervals (empirical residual quantiles) are served alongside
 point forecasts via the API, not just point estimates — important for
