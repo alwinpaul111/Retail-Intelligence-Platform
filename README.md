@@ -160,7 +160,7 @@ on the deployed API
 Streamlit app with 6 tabs: KPIs, Forecast (model comparison + SHAP + a live
 demo that calls the deployed FastAPI service in real time + trend explorer),
 Store Performance, Product Performance, Customer Segments (RFM), and EDA —
-all filterable by date range, city, and category
+all filterable by date range, city, and category.
 
 ## 8. Deployment
 
@@ -257,6 +257,4 @@ This uses synthetic data (documented generation logic in `generate_data.py`,
 seeded for reproducibility) rather than a scraped/licensed real dataset — it
 was designed to be realistic enough that every technique here transfers
 directly to real retail data, while keeping the whole pipeline fast enough to
-run and iterate on end-to-end. If asked in an interview, be upfront about
-this: it's a full demonstration of the pipeline, not a claim about specific
-real-world retail numbers.
+run and iterate on end-to-end.
