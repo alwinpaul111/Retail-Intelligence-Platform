@@ -18,7 +18,7 @@ is scoped around a realistic business question retail chains actually pay for:
 feeds into that answer — the SQL views compute the KPIs, the stats module
 validates whether a promotion campaign actually worked, the model forecasts
 demand, and the final output is a concrete profit number tied to a stocking
-decision. The render file did not work as expected as the intial reports suggested as well as historical data trends in similar fields as the output as 
+decision.
 a
 ## Architecture
 
