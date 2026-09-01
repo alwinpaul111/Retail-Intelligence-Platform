@@ -118,7 +118,7 @@ category), and customer RFM features.
 ## 5. ML Models
 
 LightGBM and XGBoost regressors forecasting daily store-category revenue,
-benchmarked against a naive "same as last week" baseline:-
+benchmarked against a naive "same as last week" baseline:
 
 | Model | MAE | RMSE | MAPE |
 |---|---|---|---|
