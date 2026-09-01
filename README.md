@@ -105,7 +105,7 @@ sqlite3 retail.db < sql/04_business_queries.sql
 `src/eda.py` produces: monthly seasonality chart, day-of-week × month revenue
 heatmap, regional trend breakdown, RFM-based customer segmentation (Champions /
 Loyal / Potential / At Risk / Lost), missing-value audit, and IQR-based outlier
-detection — all rendered in the dashboard's EDA tab
+detection — all rendered in the dashboard's EDA tab. The total ETA estimated is roughly same as the pervious versions/models.
 
 ## 4. Feature Engineering
 
