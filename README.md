@@ -19,7 +19,7 @@ feeds into that answer — the SQL views compute the KPIs, the stats module
 validates whether a promotion campaign actually worked, the model forecasts
 demand, and the final output is a concrete profit number tied to a stocking
 decision.
-a
+
 ## Architecture
 
 ```
