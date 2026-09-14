@@ -18,8 +18,8 @@ is scoped around a realistic business question retail chains actually pay for:
 feeds into that answer — the SQL views compute the KPIs, the stats module
 validates whether a promotion campaign actually worked, the model forecasts
 demand, and the final output is a concrete profit number tied to a stocking
-decision. the api calling is unavailable.
-
+decision. the api calling is unavailable. The api is unavailble because grok api is no longer valid.
+ 
 ## Architecture
 
 ```
